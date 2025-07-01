@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Yêu 5 – Khung Ảnh Xoay 3D</title>
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(120deg, #ffe0f0, #d0f0ff);
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      perspective: 1000px;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .wrapper {
+      display: flex;
+      gap: 80px;
+      margin-top: 100px;
+    }
+
+    .scene {
+      width: 400px;
+      height: 400px;
+      position: relative;
+      transform-style: preserve-3d;
+      animation: spin 20s linear infinite;
+    }
+
+    .scene2 {
+      animation-direction: reverse;
+    }
+
+    .scene img {
+      position: absolute;
+      width: 140px;
+      height: 280px;
+      border-radius: 30px;
+      object-fit: cover;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+    }
+
+    .img1 { transform: rotateY(0deg) translateZ(250px); }
+    .img2 { transform: rotateY(90deg) translateZ(250px); }
+    .img3 { transform: rotateY(180deg) translateZ(250px); }
+    .img4 { transform: rotateY(270deg) translateZ(250px); }
+
+    @keyframes spin {
+      from { transform: rotateY(0deg); }
+      to { transform: rotateY(360deg); }
+    }
+
+    .bubble {
+      position: absolute;
+      bottom: -100px;
+      background: url('https://cdn-icons-png.flaticon.com/512/833/833472.png') no-repeat center/cover;
+      animation: floatUp 10s linear infinite;
+      opacity: 0.6;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(-120vh) scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    .falling-text {
+      position: fixed;
+      top: -50px;
+      font-size: 24px;
+      font-weight: bold;
+      opacity: 0.9;
+      animation: fall 6s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(110vh);
+        opacity: 0;
+      }
+    }
+
+    /* Nút mở nhạc */
+    .music-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #ff5c8a;
+      color: white;
+      padding: 12px 22px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 16px;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s, background 0.3s;
+    }
+
+    .music-button:hover {
+      background: #ff3366;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hai khung xoay ảnh -->
+  <div class="wrapper">
+    <!-- Khung 1 -->
+    <div class="scene scene1">
+      <img class="img1" src="https://scontent.fhan5-11.fna.fbcdn.net/v/t1.15752-9/496624432_690068860732332_8094715342023261549_n.jpg?stp=dst-jpg_s480x480_tt6&_nc_cat=103&ccb=1-7&_nc_sid=0024fc&_nc_ohc=J64x2ezkQFcQ7kNvwHjQu_Z&_nc_oc=AdkftbtaD8-qKA03UvyvX-791UV20SMiUpshAAOFSeIjzRlLcexqPy7JLqY00p-JjIE&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.fhan5-11.fna&oh=03_Q7cD2gESxACei-gMNlyuJhNKPky68p63fLT5E80qUOyy1r3YhA&oe=688B658C" alt="Ảnh 1">
+      <img class="img2" src="https://scontent.fhan5-2.fna.fbcdn.net/v/t1.15752-9/496628127_1226134345585317_4729475314570076069_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=0024fc&_nc_ohc=LqxsDqI-lXwQ7kNvwELefaq&_nc_oc=Adn1fwuL76aI79pC_j5AZheiZ2rxvUE9LkJ_q9B_VJyfSblVyDxl02uSuhIm2ZIgVSA&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.fhan5-2.fna&oh=03_Q7cD2gFH9lY1A8mjMbQZ5HmM-zh4hVeIe_CN6I7p4uL7Dc8enQ&oe=688B3A32" alt="Ảnh 2">
+      <img class="img3" src="https://scontent.fhan5-9.fna.fbcdn.net/v/t1.15752-9/369814750_725644596076526_3643575408881441574_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeGBPh5l0z-W8vdZwNSaOReEX7gRNAKEgTxfuBE0AoSBPF7AtYbpHYFBtlKEgrLrng2y7hGBDUOvh1mwBuiMk2lQ&_nc_ohc=DWrFIUgQJm8Q7kNvwFurRJ7&_nc_oc=AdkHJF8p1aYK2xZbnYU5STKVda_2Zlyxh06_CgTCdlXEiifc1GdmRcvaV9qxb4KkMc8&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.fhan5-9.fna&oh=03_Q7cD2gEJXi6IkMF0mXNCR4VYvVq1zkSqG0ii9UdrjcKh_uZnzg&oe=688B655E" alt="Ảnh 3">
+      <img class="img4" src="https://scontent.fhan5-11.fna.fbcdn.net/v/t1.15752-9/496624432_690068860732332_8094715342023261549_n.jpg?stp=dst-jpg_s480x480_tt6&_nc_cat=103&ccb=1-7&_nc_sid=0024fc&_nc_ohc=J64x2ezkQFcQ7kNvwHjQu_Z&_nc_oc=AdkftbtaD8-qKA03UvyvX-791UV20SMiUpshAAOFSeIjzRlLcexqPy7JLqY00p-JjIE&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.fhan5-11.fna&oh=03_Q7cD2gESxACei-gMNlyuJhNKPky68p63fLT5E80qUOyy1r3YhA&oe=688B658C" alt="Ảnh 4">
+    </div>
+
+    <!-- Khung 2 -->
+    <div class="scene scene2">
+      <img class="img1" src="https://scontent.fhan5-8.fna.fbcdn.net/v/t1.15752-9/503750066_24118877037751529_3742874779606571871_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=0024fc&_nc_ohc=bKm4UPeonJ8Q7kNvwFtQRUT&_nc_oc=AdnMyVAwk_-UZ4HbvawIytWCAzFF82_-Yyn-OnKYMaSghYJgGSrmzuW2f4kcrHRibvY&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.fhan5-8.fna&oh=03_Q7cD2gH58No-DCRBPpIBniy2CcQV0t1Qs8SzUjOYuOrE7h6NyA&oe=688B5EF3" alt="Ảnh 5">
+      <img class="img2" src="https://scontent.fhan5-6.fna.fbcdn.net/v/t1.15752-9/513872945_1879384872855115_5268235655321374158_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=0024fc&_nc_ohc=MeslycSTmbAQ7kNvwF4YeiK&_nc_oc=Admo3fpusXYiGcMGNs6LRGFdy5kuSF9H08NFCPyl9EqvX-VFIIJ7AmuA0WsxwJv7hWQ&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.fhan5-6.fna&oh=03_Q7cD2gF-fXUPJDyxMCbjZj-6ZdlRW8KShS3rzIwxm9TaFWFVFQ&oe=688B479D" alt="Ảnh 6">
+      <img class="img3" src="https://scontent.fhan5-9.fna.fbcdn.net/v/t1.15752-9/369814750_725644596076526_3643575408881441574_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeGBPh5l0z-W8vdZwNSaOReEX7gRNAKEgTxfuBE0AoSBPF7AtYbpHYFBtlKEgrLrng2y7hGBDUOvh1mwBuiMk2lQ&_nc_ohc=DWrFIUgQJm8Q7kNvwFurRJ7&_nc_oc=AdkHJF8p1aYK2xZbnYU5STKVda_2Zlyxh06_CgTCdlXEiifc1GdmRcvaV9qxb4KkMc8&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.fhan5-9.fna&oh=03_Q7cD2gEJXi6IkMF0mXNCR4VYvVq1zkSqG0ii9UdrjcKh_uZnzg&oe=688B655E" alt="Ảnh 7">
+      <img class="img4" src="https://scontent.fhan5-10.fna.fbcdn.net/v/t1.15752-9/494690435_680108925011827_8104661895655915014_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=0024fc&_nc_ohc=ltIAQGfNS0oQ7kNvwEMOC4I&_nc_oc=AdkFwOUh7cP3H-iepgfOh7mv46XGra6xC4bb9YLkd_Gtf9AKAnwcRD9uNLz5ZFlmsZk&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.fhan5-10.fna&oh=03_Q7cD2gE5Yp91HTCjr--xrQJEmrbui30RCMueuIx86kmlHXgrCQ&oe=688B4EB7" alt="Ảnh 8">
+    </div>
+  </div>
+
+  <!-- Bong bóng trái tim -->
+  <script>
+    for (let i = 0; i < 40; i++) {
+      const bubble = document.createElement("div");
+      bubble.className = "bubble";
+      bubble.style.left = Math.random() * 100 + "vw";
+      bubble.style.animationDuration = (5 + Math.random() * 5) + "s";
+      const size = 15 + Math.random() * 25;
+      bubble.style.width = bubble.style.height = size + "px";
+      document.body.appendChild(bubble);
+    }
+  </script>
+
+  <!-- Chữ rơi dễ thương -->
+  <script>
+    const words = ["Yêu em", "UwU", "Cute", "Hồng Ngân", "Dễ Thương", "😍", "💕", "Làm người yêu anh nhé!"];
+    const colors = ["#ff4d6d", "#ff9e00", "#845ec2", "#00c9a7", "#00b4d8"];
+
+    function createText() {
+      const text = document.createElement("div");
+      text.className = "falling-text";
+      text.innerText = words[Math.floor(Math.random() * words.length)];
+      text.style.left = Math.random() * 100 + "vw";
+      text.style.color = colors[Math.floor(Math.random() * colors.length)];
+      text.style.fontSize = (16 + Math.random() * 20) + "px";
+      text.style.animationDuration = (4 + Math.random() * 3) + "s";
+      document.body.appendChild(text);
+      setTimeout(() => text.remove(), 7000);
+    }
+
+    setInterval(createText, 300);
+  </script>
+
+  <!-- Nút nghe bài Yêu 5 -->
+  <a class="music-button" href="https://www.youtube.com/watch?v=aVMlPZDxd5U" target="_blank">
+    🎵 Nghe bài Yêu 5
+  </a>
+
+</body>
+</html>
